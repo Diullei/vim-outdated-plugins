@@ -27,9 +27,15 @@ endfunction
 function! s:DisplayResults(job_id, data, event) dict
   if g:pluginsToUpdate > 0
     echom 'Plugins to update: ' . g:pluginsToUpdate
+    if exists('Notify')
+      call Notify(g:pluginsToUpdate . ' plugins to update', "warn")
+    endif
   else
     if !g:outdated_plugins_silent_mode
       echom 'All plugins up-to-date'
+    if exists('Notify')
+      call Notify('All plugins up-to-date', "info")
+    endif
     endif
   endif
 endfunction
